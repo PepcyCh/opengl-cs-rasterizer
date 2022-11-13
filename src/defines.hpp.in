@@ -1,0 +1,7 @@
+#pragma once
+
+namespace {
+
+inline const char *kProjectSourceDir = "${CMAKE_SOURCE_DIR}/src";
+
+}

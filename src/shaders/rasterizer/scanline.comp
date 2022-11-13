@@ -1,0 +1,224 @@
+#version 460
+
+// #extension GL_GOOGLE_include_directive : enable
+
+layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+
+// #include "varyings.glsl"
+
+layout(std430, binding = 0) readonly buffer InPositions {
+    float i_positions[];
+};
+layout(std430, binding = 1) readonly buffer InNormals {
+    float i_normals[];
+};
+layout(std430, binding = 2) readonly buffer InIndices {
+    uint i_indices[];
+};
+
+layout(binding = 3) writeonly uniform image2D frame_buffer;
+layout(binding = 4, r32i) uniform iimage2D depth_buffer;
+
+layout(binding = 5) uniform RasterizerStates {
+    mat4 model;
+    mat4 model_it;
+    mat4 view;
+    mat4 proj;
+    uint viewport_width;
+    uint viewport_height;
+};
+
+layout(binding = 6) uniform DrawArguments {
+    uint num_indices;
+    uint first_index;
+    uint vertex_offset;
+};
+
+// #define FS_BINDING_START 7
+// #include "fragment.glsl"
+
+struct Vertex {
+    vec3 pos_world;
+    vec3 normal_world;
+    vec4 homo;
+    vec3 clip;
+    float inv_w;
+    vec2 screen;
+};
+
+struct TriPart {
+    float x[4];
+    float y[2];
+    float dx[2];
+};
+
+float vec2_cross(vec2 a, vec2 b) {
+    return a.x * b.y - a.y * b.x;
+}
+
+bool inside_clip(vec3 clip) {
+    return clip.x >= -1.0 && clip.x <= 1.0 && clip.y >= -1.0 && clip.y <= 1.0 && clip.z >= -1.0 && clip.z <= 1.0;
+}
+
+void main() {
+    const uint tri_index = gl_GlobalInvocationID.x;
+    if (tri_index * 3 >= num_indices) {
+        return;
+    }
+
+    Vertex vert[3];
+    for (uint i = 0; i < 3; i++) {
+        const uint index = vertex_offset + i_indices[first_index + tri_index * 3 + i];
+        const vec3 pos_local = vec3(i_positions[index * 3], i_positions[index * 3 + 1], i_positions[index * 3 + 2]);
+        const vec3 normal_local = vec3(i_normals[index * 3], i_normals[index * 3 + 1], i_normals[index * 3 + 2]);
+        const vec4 pos_world = model * vec4(pos_local, 1.0);
+        vert[i].pos_world = pos_world.xyz;
+        vert[i].homo = proj * view * pos_world;
+        vert[i].normal_world = mat3(model_it) * normal_local;
+        vert[i].inv_w = 1.0 / vert[i].homo.w;
+        vert[i].clip = vert[i].homo.xyz * vert[i].inv_w;
+        vert[i].screen = vec2((vert[i].clip.x * 0.5 + 0.5) * viewport_width,
+            (0.5 - vert[i].clip.y * 0.5) * viewport_height);
+    }
+
+    bool inside0 = inside_clip(vert[0].clip);
+    bool inside1 = inside_clip(vert[1].clip);
+    bool inside2 = inside_clip(vert[2].clip);
+    if (!inside0 && !inside1 && !inside2) {
+        return;
+    }
+
+    const vec2 p1 = vert[1].screen - vert[0].screen;
+    const vec2 p2 = vert[2].screen - vert[0].screen;
+    const float area = vec2_cross(p1, p2);
+    const bool is_front_face = area < 0.0;
+    if (area == 0) {
+        return;
+    }
+    if (!is_front_face) {
+        return;
+    }
+    const float inv_area = 1.0 / area;
+
+    uint top = 0;
+    if (vert[1].screen.y < vert[top].screen.y) {
+        top = 1;
+    }
+    if (vert[2].screen.y < vert[top].screen.y) {
+        top = 2;
+    }
+    uint bottom = 2;
+    if (vert[1].screen.y > vert[bottom].screen.y) {
+        bottom = 1;
+    }
+    if (vert[0].screen.y > vert[bottom].screen.y) {
+        bottom = 0;
+    }
+    const uint middle = 3 - top - bottom;
+
+    const float inv_y = 1.0 / (vert[bottom].screen.y - vert[top].screen.y);
+    TriPart tri_parts[2];
+    uint num_parts = 0;
+    if (vert[middle].screen.y == vert[top].screen.y) {
+        tri_parts[0].y[0] = vert[top].screen.y;
+        tri_parts[0].y[1] = vert[bottom].screen.y;
+        tri_parts[0].x[0] = min(vert[top].screen.x, vert[middle].screen.x);
+        tri_parts[0].x[1] = max(vert[top].screen.x, vert[middle].screen.x);
+        tri_parts[0].x[2] = vert[bottom].screen.x;
+        tri_parts[0].x[3] = vert[bottom].screen.x;
+        tri_parts[0].dx[0] = (tri_parts[0].x[2] - tri_parts[0].x[0]) * inv_y;
+        tri_parts[0].dx[1] = (tri_parts[0].x[3] - tri_parts[0].x[1]) * inv_y;
+        num_parts = 1;
+    } else if (vert[middle].screen.y == vert[bottom].screen.y) {
+        tri_parts[0].y[0] = vert[top].screen.y;
+        tri_parts[0].y[1] = vert[bottom].screen.y;
+        tri_parts[0].x[0] = vert[top].screen.x;
+        tri_parts[0].x[1] = vert[top].screen.x;
+        tri_parts[0].x[2] = min(vert[bottom].screen.x, vert[middle].screen.x);
+        tri_parts[0].x[3] = max(vert[bottom].screen.x, vert[middle].screen.x);
+        tri_parts[0].dx[0] = (tri_parts[0].x[2] - tri_parts[0].x[0]) * inv_y;
+        tri_parts[0].dx[1] = (tri_parts[0].x[3] - tri_parts[0].x[1]) * inv_y;
+        num_parts = 1;
+    } else {
+        tri_parts[0].y[0] = vert[top].screen.y;
+        tri_parts[0].y[1] = vert[middle].screen.y;
+        tri_parts[0].x[0] = vert[top].screen.x;
+        tri_parts[0].x[1] = vert[top].screen.x;
+        tri_parts[1].y[0] = vert[middle].screen.y;
+        tri_parts[1].y[1] = vert[bottom].screen.y;
+        tri_parts[1].x[2] = vert[bottom].screen.x;
+        tri_parts[1].x[3] = vert[bottom].screen.x;
+        float dx = (vert[bottom].screen.x - vert[top].screen.x) * inv_y;
+        float mx = vert[top].screen.x + dx * (vert[middle].screen.y - vert[top].screen.y);
+        vec2 tm = vert[middle].screen - vert[top].screen;
+        vec2 tb = vert[bottom].screen - vert[top].screen;
+        if (vec2_cross(tm, tb) < 0.0) {
+            tri_parts[0].x[2] = vert[middle].screen.x;
+            tri_parts[1].x[0] = vert[middle].screen.x;
+            tri_parts[0].x[3] = mx;
+            tri_parts[1].x[1] = mx;
+            tri_parts[0].dx[1] = dx;
+            tri_parts[1].dx[1] = dx;
+            tri_parts[0].dx[0] = (tri_parts[0].x[2] - tri_parts[0].x[0]) / (tri_parts[0].y[1] - tri_parts[0].y[0]);
+            tri_parts[1].dx[0] = (tri_parts[1].x[2] - tri_parts[1].x[0]) / (tri_parts[1].y[1] - tri_parts[1].y[0]);
+        } else {
+            tri_parts[0].x[3] = vert[middle].screen.x;
+            tri_parts[1].x[1] = vert[middle].screen.x;
+            tri_parts[0].x[2] = mx;
+            tri_parts[1].x[0] = mx;
+            tri_parts[0].dx[0] = dx;
+            tri_parts[1].dx[0] = dx;
+            tri_parts[0].dx[1] = (tri_parts[0].x[3] - tri_parts[0].x[1]) / (tri_parts[0].y[1] - tri_parts[0].y[0]);
+            tri_parts[1].dx[1] = (tri_parts[1].x[3] - tri_parts[1].x[1]) / (tri_parts[1].y[1] - tri_parts[1].y[0]);
+        }
+        num_parts = 2;
+    }
+
+    for (uint i = 0; i < num_parts; i++) {
+        int min_y = max(0, int(tri_parts[i].y[0] + 0.5));
+        float sy = min_y + 0.5 - tri_parts[i].y[0];
+        float lx = tri_parts[i].x[0] + tri_parts[i].dx[0] * sy;
+        float rx = tri_parts[i].x[1] + tri_parts[i].dx[1] * sy;
+        int max_y = min(int(viewport_height) - 1, int(tri_parts[i].y[1] - 0.5));
+        for (int y = min_y; y <= max_y; y++) {
+            int min_x = max(0, int(lx + 0.5));
+            int max_x = min(int(viewport_width) - 1, int(rx - 0.5));
+            for (int x = min_x; x <= max_x; x++) {
+                const vec2 pc = vec2(x + 0.5, y + 0.5);
+                vec2 s0 = vert[0].screen - pc;
+                vec2 s1 = vert[1].screen - pc;
+                vec2 s2 = vert[2].screen - pc;
+                float us = vec2_cross(s1, s2) * inv_area;
+                float vs = vec2_cross(s2, s0) * inv_area;
+                float ws = vec2_cross(s0, s1) * inv_area;
+
+                float inv_w = us * vert[0].inv_w + vs * vert[1].inv_w + ws * vert[2].inv_w;
+                float homo_w = 1.0 / inv_w;
+                float u = us * vert[0].inv_w * homo_w;
+                float v = vs * vert[1].inv_w * homo_w;
+                float w = ws * vert[2].inv_w * homo_w;
+
+                float z = u * vert[0].clip.z + v * vert[1].clip.z + w * vert[2].clip.z;
+                if (z < -1.0 || z > 1.0) {
+                    continue;
+                }
+                int buffer_zi = imageAtomicMin(depth_buffer, ivec2(x, y), floatBitsToInt(z));
+                float buffer_z = intBitsToFloat(buffer_zi);
+                if (z >= buffer_z) {
+                    continue;
+                }
+
+                // Varyings vary;
+                // vary.pos = u * vert[0].pos_world + v * vert[1].pos_world + w * vert[2].pos_world;
+                // vary.normal = u * vert[0].normal_world + v * vert[1].normal_world + w * vert[2].normal_world;
+                // vec4 frag_color = fragment_shader(vary);
+                vec3 normal = u * vert[0].normal_world + v * vert[1].normal_world + w * vert[2].normal_world;
+                vec4 frag_color = vec4(normal * 0.5 + 0.5, 1.0);
+                imageStore(frame_buffer, ivec2(x, y), frag_color);
+            }
+
+            lx += tri_parts[i].dx[0];
+            rx += tri_parts[i].dx[1];
+        }
+    }
+}

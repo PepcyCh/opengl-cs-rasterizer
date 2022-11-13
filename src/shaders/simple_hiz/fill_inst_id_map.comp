@@ -1,0 +1,20 @@
+#version 460
+
+layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
+
+layout(std430, binding = 0) writeonly buffer InstancesIdMap {
+    uint instances_id_map[];
+};
+
+layout(binding = 1) uniform NumInstances {
+    uint num_instances;
+};
+
+void main() {
+    const uint inst_id = gl_GlobalInvocationID.x;
+    if (inst_id >= num_instances) {
+        return;
+    }
+
+    instances_id_map[inst_id] = inst_id;
+}

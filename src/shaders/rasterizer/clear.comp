@@ -1,0 +1,22 @@
+#version 460
+
+layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
+
+layout(binding = 0) writeonly uniform image2D frame_buffer;
+layout(binding = 1) writeonly uniform image2D depth_buffer;
+
+layout(binding = 2) uniform ClearValues {
+    vec4 color;
+    float depth;
+};
+
+void main() {
+    const ivec2 pixel_coord = ivec2(gl_GlobalInvocationID.xy);
+    const ivec2 image_size = imageSize(frame_buffer);
+    if (any(greaterThanEqual(pixel_coord, image_size))) {
+        return;
+    }
+
+    imageStore(frame_buffer, pixel_coord, color);
+    imageStore(depth_buffer, pixel_coord, vec4(depth));
+}

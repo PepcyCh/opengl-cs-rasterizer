@@ -1,0 +1,101 @@
+#version 460
+
+layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+
+struct Vertex {
+    vec3 pos_world;
+    float screen_x;
+    vec3 normal_world;
+    float screen_y;
+    vec4 homo;
+    vec3 clip;
+    float inv_w;
+};
+layout(std430, binding = 0) readonly buffer InVertices {
+    Vertex i_vertices[];
+};
+
+layout(std430, binding = 1) buffer InListsNum {
+    uint i_lists_num[];
+};
+#define MAX_TRIANGLES_PER_TILE 1024
+struct ListTriangle {
+    uint min_x;
+    uint max_x;
+    uint tri_index;
+    float inv_area;
+};
+layout(std430, binding = 2) readonly buffer InLists {
+    ListTriangle i_lists[];
+};
+
+layout(binding = 3) writeonly uniform image2D frame_buffer;
+layout(binding = 4, r32i) uniform iimage2D depth_buffer;
+
+layout(binding = 5) uniform RasterizerStates {
+    mat4 model;
+    mat4 model_it;
+    mat4 view;
+    mat4 proj;
+    uint viewport_width;
+    uint viewport_height;
+};
+
+// #define FS_BINDING_START 6
+// #include "fragment.glsl"
+
+float vec2_cross(vec2 a, vec2 b) {
+    return a.x * b.y - a.y * b.x;
+}
+
+void main() {
+    const uint y = gl_GlobalInvocationID.x;
+    if (y >= viewport_height) {
+        return;
+    }
+
+    const uint num_triangles = i_lists_num[y];
+    i_lists_num[y] = 0;
+    const uint index_offset = y * MAX_TRIANGLES_PER_TILE;
+    for (uint i = 0; i < num_triangles; i++) {
+        const ListTriangle list_tri = i_lists[index_offset + i];
+        const Vertex vert[3] = Vertex[](
+            i_vertices[list_tri.tri_index * 3],
+            i_vertices[list_tri.tri_index * 3 + 1],
+            i_vertices[list_tri.tri_index * 3 + 2]
+        );
+        for (uint x = list_tri.min_x; x <= list_tri.max_x; x++) {
+            const vec2 pc = vec2(x + 0.5, y + 0.5);
+            vec2 s0 = vec2(vert[0].screen_x, vert[0].screen_y) - pc;
+            vec2 s1 = vec2(vert[1].screen_x, vert[1].screen_y) - pc;
+            vec2 s2 = vec2(vert[2].screen_x, vert[2].screen_y) - pc;
+            float us = vec2_cross(s1, s2) * list_tri.inv_area;
+            float vs = vec2_cross(s2, s0) * list_tri.inv_area;
+            float ws = vec2_cross(s0, s1) * list_tri.inv_area;
+
+            float inv_w = us * vert[0].inv_w + vs * vert[1].inv_w + ws * vert[2].inv_w;
+            float homo_w = 1.0 / inv_w;
+            float u = us * vert[0].inv_w * homo_w;
+            float v = vs * vert[1].inv_w * homo_w;
+            float w = ws * vert[2].inv_w * homo_w;
+
+            float z = u * vert[0].clip.z + v * vert[1].clip.z + w * vert[2].clip.z;
+            if (z < -1.0 || z > 1.0) {
+                continue;
+            }
+            int buffer_zi = imageAtomicMin(depth_buffer, ivec2(x, y), floatBitsToInt(z));
+            float buffer_z = intBitsToFloat(buffer_zi);
+            if (z >= buffer_z) {
+                continue;
+            }
+
+            // Varyings vary;
+            // vary.pos = u * vert[0].pos_world + v * vert[1].pos_world + w * vert[2].pos_world;
+            // vary.normal = u * vert[0].normal_world + v * vert[1].normal_world + w * vert[2].normal_world;
+            // vec4 frag_color = fragment_shader(vary);
+            vec3 normal = u * vert[0].normal_world + v * vert[1].normal_world + w * vert[2].normal_world;
+            vec4 frag_color = vec4(normal * 0.5 + 0.5, 1.0);
+            imageStore(frame_buffer, ivec2(x, y), frag_color);
+        }
+    }
+}

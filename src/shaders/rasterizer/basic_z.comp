@@ -1,0 +1,129 @@
+#version 460
+
+#extension GL_GOOGLE_include_directive : enable
+
+layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+
+#include "varyings.glsl"
+
+layout(std430, binding = 0) readonly buffer InPositions {
+    float i_positions[];
+};
+layout(std430, binding = 1) readonly buffer InNormals {
+    float i_normals[];
+};
+layout(std430, binding = 2) readonly buffer InIndices {
+    uint i_indices[];
+};
+
+layout(binding = 3) writeonly uniform image2D frame_buffer;
+layout(binding = 4, r32i) uniform iimage2D depth_buffer;
+
+layout(binding = 5) uniform RasterizerStates {
+    mat4 model;
+    mat4 model_it;
+    mat4 view;
+    mat4 proj;
+    uint viewport_width;
+    uint viewport_height;
+    uint num_indices;
+    uint first_index;
+    uint vertex_offset;
+};
+
+#define FS_BINDING_START 6
+#include "fragment.glsl"
+
+struct Vertex {
+    vec3 pos_world;
+    vec3 normal_world;
+    vec4 homo;
+    vec3 clip;
+    float inv_w;
+    vec2 screen;
+};
+
+float vec2_cross(vec2 a, vec2 b) {
+    return a.x * b.y - a.y * b.x;
+}
+
+void main() {
+    const uint tri_index = gl_GlobalInvocationID.x;
+    if (tri_index * 3 >= num_indices) {
+        return;
+    }
+
+    Vertex vert[3];
+    for (uint i = 0; i < 3; i++) {
+        const uint index = vertex_offset + i_indices[first_index + tri_index * 3 + i];
+        const vec3 pos_local = vec3(i_positions[index * 3], i_positions[index * 3 + 1], i_positions[index * 3 + 2]);
+        const vec3 normal_local = vec3(i_normals[index * 3], i_normals[index * 3 + 1], i_normals[index * 3 + 2]);
+        const vec4 pos_world = model * vec4(pos_local, 1.0);
+        vert[i].pos_world = pos_world.xyz;
+        vert[i].homo = proj * view * pos_world;
+        vert[i].normal_world = mat3(model_it) * normal_local;
+        vert[i].inv_w = 1.0 / vert[i].homo.w;
+        vert[i].clip = vert[i].homo.xyz * vert[i].inv_w;
+        vert[i].screen = vec2((vert[i].clip.x * 0.5 + 0.5) * viewport_width,
+            (0.5 - vert[i].clip.y * 0.5) * viewport_height);
+    }
+
+    const vec2 p1 = vert[1].screen - vert[0].screen;
+    const vec2 p2 = vert[2].screen - vert[0].screen;
+    const float area = vec2_cross(p1, p2);
+    const bool is_front_face = area < 0.0;
+    if (area == 0) {
+        return;
+    }
+    if (!is_front_face) {
+        return;
+    }
+    const float inv_area = 1.0 / area;
+
+    const ivec2 pos_min = max(ivec2(0), ivec2(min(vert[0].screen, min(vert[1].screen, vert[2].screen))));
+    const ivec2 pos_max = min(ivec2(viewport_width - 1, viewport_height - 1),
+        ivec2(max(vert[0].screen, max(vert[1].screen, vert[2].screen))));
+    for (int y = pos_min.y; y <= pos_max.y; y++) {
+        for (int x = pos_min.x; x <= pos_max.x; x++) {
+            const vec2 pc = vec2(x + 0.5, y + 0.5);
+            vec2 s0 = vert[0].screen - pc;
+            vec2 s1 = vert[1].screen - pc;
+            vec2 s2 = vert[2].screen - pc;
+            float us = vec2_cross(s1, s2);
+            float vs = vec2_cross(s2, s0);
+            float ws = vec2_cross(s0, s1);
+            float us_sign = sign(us);
+            float vs_sign = sign(vs);
+            float ws_sign = sign(ws);
+            if (us_sign != vs_sign || us_sign != ws_sign) {
+                continue;
+            }
+            us *= inv_area;
+            vs *= inv_area;
+            ws *= inv_area;
+
+            float inv_w = us * vert[0].inv_w + vs * vert[1].inv_w + ws * vert[2].inv_w;
+            float homo_w = 1.0 / inv_w;
+            float u = us * vert[0].inv_w * homo_w;
+            float v = vs * vert[1].inv_w * homo_w;
+            float w = ws * vert[2].inv_w * homo_w;
+
+            float z = u * vert[0].clip.z + v * vert[1].clip.z + w * vert[2].clip.z;
+            if (z < -1.0 || z > 1.0) {
+                continue;
+            }
+            int buffer_zi = imageAtomicMin(depth_buffer, ivec2(x, y), floatBitsToInt(z));
+            float buffer_z = intBitsToFloat(buffer_zi);
+            if (z >= buffer_z) {
+                continue;
+            }
+
+            Varyings vary;
+            vary.pos = u * vert[0].pos_world + v * vert[1].pos_world + w * vert[2].pos_world;
+            vary.normal = u * vert[0].normal_world + v * vert[1].normal_world + w * vert[2].normal_world;
+            // vec4 frag_color = fragment_shader(vary);
+            vec4 frag_color = vec4(vary.normal * 0.5 + 0.5, 1.0);
+            imageStore(frame_buffer, ivec2(x, y), frag_color);
+        }
+    }
+}

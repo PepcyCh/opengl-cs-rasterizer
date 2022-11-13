@@ -1,0 +1,40 @@
+#version 460
+
+layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
+
+layout(binding = 0, r32f) readonly uniform image2D src_texture;
+layout(binding = 1) writeonly uniform image2D dst_texture;
+
+void main() {
+    const ivec2 src_texture_size = imageSize(src_texture);
+    const ivec2 pixel_coord = ivec2(gl_GlobalInvocationID.xy);
+    const ivec2 pixel_coord_src = pixel_coord * 2;
+
+    float v00 = imageLoad(src_texture, pixel_coord_src).x;
+    float v01 = imageLoad(src_texture, pixel_coord_src + ivec2(0, 1)).x;
+    float v10 = imageLoad(src_texture, pixel_coord_src + ivec2(1, 0)).x;
+    float v11 = imageLoad(src_texture, pixel_coord_src + ivec2(1, 1)).x;
+
+    float v = max(max(v00, v01), max(v10, v11));
+
+    const bvec2 is_odd = notEqual(src_texture_size & ivec2(1), ivec2(0));
+    if (is_odd.x) {
+        float v20 = imageLoad(src_texture, pixel_coord_src + ivec2(2, 0)).x;
+        float v21 = imageLoad(src_texture, pixel_coord_src + ivec2(2, 1)).x;
+
+        v = max(v, max(v20, v21));
+    }
+    if (is_odd.y) {
+        float v02 = imageLoad(src_texture, pixel_coord_src + ivec2(0, 2)).x;
+        float v12 = imageLoad(src_texture, pixel_coord_src + ivec2(1, 2)).x;
+
+        v = max(v, max(v02, v12));
+    }
+    if (is_odd.x && is_odd.y) {
+        float v22 = imageLoad(src_texture, pixel_coord_src + ivec2(2, 2)).x;
+
+        v = max(v, v22);
+    }
+
+    imageStore(dst_texture, pixel_coord, vec4(v));
+}

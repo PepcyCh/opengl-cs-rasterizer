@@ -1,0 +1,27 @@
+#version 460
+
+layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+
+layout(std430, binding = 0) readonly buffer NextInNodes {
+    uint i_num;
+    uint i_nodes[];
+};
+
+layout(std430, binding = 1) writeonly buffer NextOutNodes {
+    uint o_num;
+    uint o_nodes[];
+};
+
+layout(std430, binding = 2) writeonly buffer DispatchArguments {
+    uint num_work_groups_x;
+    uint num_work_groups_y;
+    uint num_work_groups_z;
+};
+
+void main() {
+    o_num = 0;
+
+    num_work_groups_x = (i_num + 32 - 1) / 32;
+    num_work_groups_y = 1;
+    num_work_groups_z = 1;
+}

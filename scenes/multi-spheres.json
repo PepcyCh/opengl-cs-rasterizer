@@ -1,0 +1,2754 @@
+{
+    "models": [
+        {
+            "name": "sphere",
+            "file": "sphere.obj"
+        }
+    ],
+    "instances": [
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -7.5,
+                7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -5.0,
+                7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                -2.5,
+                7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                0.0,
+                7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                2.5,
+                7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                5.0,
+                7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                -7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                -5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                -2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                0.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                2.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                5.0
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -7.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                -2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                0.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                2.5,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                5.0,
+                7.5
+            ]
+        },
+        {
+            "model": "sphere",
+            "translate": [
+                7.5,
+                7.5,
+                7.5
+            ]
+        }
+    ]
+}

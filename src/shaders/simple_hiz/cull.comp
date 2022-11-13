@@ -1,0 +1,105 @@
+#version 460
+
+layout(local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
+
+layout(binding = 0) uniform sampler2D depth_buffer;
+
+struct Bbox {
+    float min_x;
+    float min_y;
+    float min_z;
+    float max_x;
+    float max_y;
+    float max_z;
+};
+layout(std430, binding = 1) readonly buffer SceneBboxes {
+    Bbox bboxes[];
+};
+
+layout(std430, binding = 2) readonly buffer InstancesIdMap {
+    uint instances_id_map[];
+};
+
+struct DrawArguments {
+    uint num_indices;
+    uint first_index;
+    uint vertex_offset;
+};
+layout(std430, binding = 3) writeonly buffer OutputInstances {
+    // DrawArguments output_draws[];
+    uint output_draws[];
+};
+layout(std430, binding = 4) buffer CullResults {
+    uint num_total;
+    uint num_visible;
+    uint num_culled;
+};
+
+layout(binding = 5) uniform CullParams {
+    mat4 view;
+    mat4 proj;
+    uint index_offset;
+};
+
+void main() {
+    uint inst_id = gl_GlobalInvocationID.x;
+    if (inst_id >= num_total) {
+        return;
+    }
+    inst_id = instances_id_map[inst_id + index_offset];
+
+    const ivec2 frame_size = textureSize(depth_buffer, 0);
+
+    const Bbox bbox = bboxes[inst_id];
+    vec3 p[8] = vec3[](
+        vec3(bbox.min_x, bbox.min_y, bbox.min_z),
+        vec3(bbox.max_x, bbox.min_y, bbox.min_z),
+        vec3(bbox.min_x, bbox.max_y, bbox.min_z),
+        vec3(bbox.max_x, bbox.max_y, bbox.min_z),
+        vec3(bbox.min_x, bbox.min_y, bbox.max_z),
+        vec3(bbox.max_x, bbox.min_y, bbox.max_z),
+        vec3(bbox.min_x, bbox.max_y, bbox.max_z),
+        vec3(bbox.max_x, bbox.max_y, bbox.max_z)
+    );
+
+    for (uint i = 0; i < 8; i++) {
+        vec4 homo = proj * view * vec4(p[i], 1.0);
+        p[i] = homo.xyz / homo.w;
+        p[i].x = p[i].x * 0.5 + 0.5;
+        p[i].y = 0.5 - p[i].y * 0.5;
+    }
+
+    vec2 clip_min = min(
+        min(min(p[0].xy, p[1].xy), min(p[2].xy, p[3].xy)),
+        min(min(p[4].xy, p[5].xy), min(p[6].xy, p[7].xy))
+    );
+    vec2 clip_max = max(
+        max(max(p[0].xy, p[1].xy), max(p[2].xy, p[3].xy)),
+        max(max(p[4].xy, p[5].xy), max(p[6].xy, p[7].xy))
+    );
+    vec2 d_screen = (clip_max - clip_min) * frame_size;
+    float lod = ceil(log2(max(d_screen.x, d_screen.y) * 0.5));
+
+    float depth_min = min(
+        min(min(p[0].z, p[1].z), min(p[2].z, p[3].z)),
+        min(min(p[4].z, p[5].z), min(p[6].z, p[7].z))
+    );
+    float depth_max = max(
+        max(max(p[0].z, p[1].z), max(p[2].z, p[3].z)),
+        max(max(p[4].z, p[5].z), max(p[6].z, p[7].z))
+    );
+
+    float depth_hiz = textureLod(depth_buffer, clip_min, lod).x;
+    depth_hiz = max(depth_hiz, textureLod(depth_buffer, vec2(clip_min.x, clip_max.y), lod).x);
+    depth_hiz = max(depth_hiz, textureLod(depth_buffer, vec2(clip_max.x, clip_min.y), lod).x);
+    depth_hiz = max(depth_hiz, textureLod(depth_buffer, clip_max, lod).x);
+
+    if (depth_min < depth_hiz && depth_max > -1.0
+        && all(lessThan(clip_min, vec2(1.0))) && all(greaterThan(clip_max, vec2(0.0)))) {
+        uint idx = atomicAdd(num_visible, 1);
+        output_draws[idx] = inst_id;
+    } else {
+        uint idx = atomicAdd(num_culled, 1);
+        output_draws[num_total - 1 - idx] = inst_id;
+    }
+}
