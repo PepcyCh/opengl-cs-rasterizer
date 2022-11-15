@@ -24,13 +24,11 @@ OctreeHiZRenderer::OctreeHiZRenderer(Rasterizer &rasterizer, const Scene &scene)
     ConstructOctree();
 
     CreateComputeProgram(hiz_gen_program_, kShaderSourceDir / "hiz_gen.comp");
-    CreateComputeProgram(bbox_cull_program_, kShaderSourceDir / "octree_hiz/bbox_test.comp");
     CreateComputeProgram(node_cull_program_, kShaderSourceDir / "octree_hiz/node_test.comp");
     CreateComputeProgram(init_buffer_program_, kShaderSourceDir / "octree_hiz/init_buffer.comp");
     CreateComputeProgram(calc_args_program_, kShaderSourceDir / "octree_hiz/calc_args.comp");
 
     camera_info_buffer_ = std::make_unique<GlBuffer>(sizeof(CameraInfo), GL_DYNAMIC_STORAGE_BIT);
-    cull_result_buffer_ = std::make_unique<GlBuffer>(sizeof(uint32_t) * 8, GL_MAP_READ_BIT | GL_MAP_WRITE_BIT);
 
     dispatch_args_buffer_ = std::make_unique<GlBuffer>(sizeof(uint32_t) * 3);
 }
@@ -214,24 +212,26 @@ void OctreeHiZRenderer::ConstructOctree() {
                 (i & 2) == 0 ? 0.0 : delta.y,
                 (i & 4) == 0 ? 0.0 : delta.z
             );
-            Bbox c_bbox { c_pmin, c_pmin + delta };
-            OctreeNode c(c_bbox);
+            Bbox bbox1 { c_pmin, c_pmin + delta };
+            Bbox bbox2 {};
+            bbox2.Empty();
+            OctreeNode c(bbox1);
             c.level = octree_nodes_[u].level + 1;
             octree_max_level_ = std::max(octree_max_level_, c.level);
             for (auto inst_id : octree_nodes_[u].instances) {
                 const auto &inst_bbox = scene_.GetInstance(inst_id).bbox;
                 if (c.bbox.IntersectWith(inst_bbox)) {
                     c.instances.push_back(inst_id);
+                    bbox2.Merge(scene_.GetInstance(inst_id).bbox);
                 }
             }
+            c.bbox.Intersect(bbox2);
             uint32_t c_id = octree_nodes_.size();
             octree_nodes_[u].ch[i] = c_id;
-            octree_nodes_.push_back(std::move(c));
+            octree_nodes_.push_back(c);
             stack.push(c_id);
-            bboxes[i] = c_bbox;
+            bboxes[i] = bbox1;
         }
-
-        octree_nodes_[u].bbox_buffer = std::make_unique<GlBuffer>(sizeof(bboxes), 0, bboxes);
     }
 
     struct GpuOctreeNode {

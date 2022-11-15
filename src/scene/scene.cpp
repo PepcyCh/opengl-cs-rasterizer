@@ -6,8 +6,6 @@
 #include <nlohmann/json.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "rasterizer/rasterizer.hpp"
-
 Scene::Scene(const std::filesystem::path &scene_path) {
     auto ext = scene_path.extension().string();
     if (ext == ".obj") {

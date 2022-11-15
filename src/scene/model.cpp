@@ -84,7 +84,7 @@ Model::Model(const std::filesystem::path &obj_path) {
 
                 bbox_.Merge(pos);
             }
-            index_.push_back(index_map.at(in_idx0));
+            indices_.push_back(index_map.at(in_idx0));
 
             if (index_map.count(in_idx1) == 0) {
                 index_map[in_idx1] = positions_.size();
@@ -95,7 +95,7 @@ Model::Model(const std::filesystem::path &obj_path) {
 
                 bbox_.Merge(pos);
             }
-            index_.push_back(index_map.at(in_idx1));
+            indices_.push_back(index_map.at(in_idx1));
 
             if (index_map.count(in_idx2) == 0) {
                 index_map[in_idx2] = positions_.size();
@@ -106,19 +106,19 @@ Model::Model(const std::filesystem::path &obj_path) {
 
                 bbox_.Merge(pos);
             }
-            index_.push_back(index_map.at(in_idx2));
+            indices_.push_back(index_map.at(in_idx2));
         }
     }
 
     if (!has_normal) {
-        for (size_t i = 0; i < index_.size(); i += 3) {
-            glm::vec3 p0 = positions_[index_[i]];
-            glm::vec3 p1 = positions_[index_[i + 1]];
-            glm::vec3 p2 = positions_[index_[i + 2]];
+        for (size_t i = 0; i < indices_.size(); i += 3) {
+            glm::vec3 p0 = positions_[indices_[i]];
+            glm::vec3 p1 = positions_[indices_[i + 1]];
+            glm::vec3 p2 = positions_[indices_[i + 2]];
             glm::vec3 n = glm::normalize(glm::cross(p1 - p0, p2 - p0));
-            normals_[index_[i]] += n;
-            normals_[index_[i + 1]] += n;
-            normals_[index_[i + 2]] += n;
+            normals_[indices_[i]] += n;
+            normals_[indices_[i + 1]] += n;
+            normals_[indices_[i + 2]] += n;
         }
         for (glm::vec3 &norm : normals_) {
             norm = glm::normalize(norm);
@@ -128,6 +128,6 @@ Model::Model(const std::filesystem::path &obj_path) {
     size_t vertex_buffer_size = positions_.size() * sizeof(glm::vec3);
     position_buffer_ = std::make_unique<GlBuffer>(vertex_buffer_size, false, positions_.data());
     normal_buffer_ = std::make_unique<GlBuffer>(vertex_buffer_size, false, normals_.data());
-    size_t index_buffer_size = index_.size() * sizeof(uint32_t);
-    index_buffer_ = std::make_unique<GlBuffer>(index_buffer_size, false, index_.data());
+    size_t index_buffer_size = indices_.size() * sizeof(uint32_t);
+    index_buffer_ = std::make_unique<GlBuffer>(index_buffer_size, false, indices_.data());
 }

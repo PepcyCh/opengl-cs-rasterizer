@@ -14,8 +14,8 @@ public:
     size_t VericesCount() const { return positions_.size(); }
     const std::vector<glm::vec3> &Positions() const { return positions_; }
     const std::vector<glm::vec3> &Normals() const { return normals_; }
-    size_t IndicesCount() const { return index_.size(); }
-    const std::vector<uint32_t> &Index() const { return index_; }
+    size_t IndicesCount() const { return indices_.size(); }
+    const std::vector<uint32_t> &Indices() const { return indices_; }
 
     const Bbox &Bbox() const { return bbox_; }
 
@@ -26,7 +26,7 @@ public:
 private:
     std::vector<glm::vec3> positions_;
     std::vector<glm::vec3> normals_;
-    std::vector<uint32_t> index_;
+    std::vector<uint32_t> indices_;
     struct Bbox bbox_;
 
     std::unique_ptr<GlBuffer> position_buffer_;

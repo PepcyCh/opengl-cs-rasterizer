@@ -46,6 +46,11 @@ void Bbox::Merge(const glm::vec3 &p) {
     pmax = glm::max(pmax, p);
 }
 
+void Bbox::Intersect(const Bbox &rhs) {
+    pmin = glm::max(pmin, rhs.pmin);
+    pmax = glm::min(pmax, rhs.pmax);
+}
+
 bool Bbox::IntersectWith(const Bbox &rhs) const {
     return pmin.x <= rhs.pmax.x && pmax.x >= rhs.pmin.x
         && pmin.y <= rhs.pmax.y && pmax.y >= rhs.pmin.y

@@ -14,6 +14,7 @@ struct Bbox {
     Bbox TransformBy(const glm::mat4 &mat) const;
     void Merge(const Bbox &rhs);
     void Merge(const glm::vec3 &p);
+    void Intersect(const Bbox &rhs);
 
     bool IntersectWith(const Bbox &rhs) const;
 };

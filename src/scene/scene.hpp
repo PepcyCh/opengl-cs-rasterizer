@@ -4,8 +4,6 @@
 
 #include "model.hpp"
 
-class Rasterizer;
-
 class Scene {
 public:
     struct Instance {

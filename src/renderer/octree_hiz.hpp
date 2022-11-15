@@ -19,8 +19,6 @@ private:
     std::unique_ptr<GlProgram> hiz_gen_program_ = nullptr;
 
     std::unique_ptr<GlBuffer> camera_info_buffer_ = nullptr;
-    std::unique_ptr<GlBuffer> cull_result_buffer_ = nullptr;
-    std::unique_ptr<GlProgram> bbox_cull_program_ = nullptr;
     std::unique_ptr<GlProgram> node_cull_program_ = nullptr;
     std::unique_ptr<GlProgram> init_buffer_program_ = nullptr;
     std::unique_ptr<GlProgram> calc_args_program_ = nullptr;
@@ -29,7 +27,6 @@ private:
         Bbox bbox;
         std::vector<uint32_t> instances;
         int ch[8];
-        std::unique_ptr<GlBuffer> bbox_buffer = nullptr;
         uint32_t level;
 
         OctreeNode(Bbox bbox);
