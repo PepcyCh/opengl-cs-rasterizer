@@ -14,7 +14,6 @@ void GlfwErrorLogFunc(int error, const char *desc) {
 
 void GLAPIENTRY GlMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length,
     const GLchar *message, const void *user_param) {
-    // if (severity == GL_DEBUG_SEVERITY_NOTIFICATION) {
     if (severity != GL_DEBUG_SEVERITY_HIGH) {
         return;
     }
