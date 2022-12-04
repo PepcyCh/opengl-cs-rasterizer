@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 
     uint32_t window_width = 1600;
     uint32_t window_height = 900;
-    Window window(window_width, window_height, "a1-dpeth");
+    Window window(window_width, window_height, "OpenGL CS Rasterizer");
     glViewport(0, 0, window_width, window_height);
 
     Scene scene(obj_path);
