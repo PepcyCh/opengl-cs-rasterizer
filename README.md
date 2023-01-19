@@ -2,6 +2,8 @@
 
 A simple compute shader fixed-function rasterizer with hierarchical z-buffer culling in OpenGL 4.6.
 
+（Also project for Zhejiang University 2022-2023 August-Winter Advanced Computer Graphics master course）
+
 Usage:
 
 ```
@@ -38,3 +40,5 @@ For simplicity, shade fragments with world space normal.
 2 kinds of Hi-Z culling are implemented:
 1. Check each instance's bounding box. (`simple_hiz`)
 2. Do culling through scene octree. (`octree_hiz`)
+
+![](./pic/readme.jpg)
