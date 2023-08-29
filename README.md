@@ -2,7 +2,7 @@
 
 A simple compute shader fixed-function rasterizer with hierarchical z-buffer culling in OpenGL 4.6.
 
-（Also project for Zhejiang University 2022-2023 August-Winter Advanced Computer Graphics master course）
+（Also project for Zhejiang University 2022-2023 Autumn-Winter Advanced Computer Graphics master course）
 
 Usage:
 
